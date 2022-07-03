@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithRedirect, GoogleAuthProvider, getRedirectResult } from "firebase/auth";
 
 
 function component() {
@@ -37,8 +37,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
-getRedirectResult().then(function(result) {
-    if (!user) {
+getRedirectResult(auth).then(function(result) {
+    console.log(result)
+    if (!result) {
         // User not logged in, start login.
         signInWithRedirect(auth, provider)
             .then((result) => {
@@ -61,7 +62,7 @@ getRedirectResult().then(function(result) {
             });
     } else {
         // user logged in, go to home page.
-        $state.go('home');
+        document.write("logged in!");
     }
 }).catch(function(error) {
     // Handle Errors here.
