@@ -35,7 +35,7 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
-
+let user;
 const provider = new GoogleAuthProvider();
 getRedirectResult(auth).then(function(result) {
     console.log(result)
@@ -47,7 +47,7 @@ getRedirectResult(auth).then(function(result) {
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
                 // The signed-in user info.
-                const user = result.user;
+                user = result.user;
                 console.log(user)
                     // ...
             }).catch((error) => {
@@ -62,6 +62,7 @@ getRedirectResult(auth).then(function(result) {
             });
     } else {
         // user logged in, go to home page.
+        console.log(user.email)
         document.write("logged in!");
     }
 }).catch(function(error) {
