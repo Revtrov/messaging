@@ -37,7 +37,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
-auth.getRedirectResult().then(function(result) {
+getRedirectResult().then(function(result) {
     if (!user) {
         // User not logged in, start login.
         signInWithRedirect(auth, provider)
