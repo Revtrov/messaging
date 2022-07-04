@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    color: white;
+    top: 0;
+    background: linear-gradient(338deg, rgba(119, 63, 251, 0.8407738095238095) 0%, rgba(24, 0, 94, 0.8127626050420168) 100%), linear-gradient(221deg, rgba(251, 63, 155, 0.7819502801120448) 0%, rgba(24, 0, 94, 0.7371323529411764) 100%), linear-gradient(221deg, rgba(107, 63, 251, 0.48783263305322133) 0%, rgba(0, 40, 94, 0.4962359943977591) 100%);
+}
+
+#profileContainer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 8vh;
+    width: auto;
+    display: grid;
+    grid-template-columns: 8vh auto;
+    justify-items: center;
+    align-items: center;
+    color: white;
+    border-radius: 0px 3vh 0px 0px;
+    font-family: white;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), linear-gradient(338deg, rgba(119, 63, 251, 0.8407738095238095) 0%, rgba(24, 0, 94, 0.8127626050420168) 100%), linear-gradient(221deg, rgba(251, 63, 155, 0.7819502801120448) 0%, rgba(24, 0, 94, 0.7371323529411764) 100%), linear-gradient(221deg, rgba(107, 63, 251, 0.48783263305322133) 0%, rgba(0, 40, 94, 0.4962359943977591) 100%);
+}
+
+#userIcon {
+    background: grey;
+    height: 6vh;
+    width: 6vh;
+    border-radius: 50%;
+}
+
+#userName {
+    text-align: center;
+    padding-right: 1vh
+}

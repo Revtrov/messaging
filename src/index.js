@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithRedirect, GoogleAuthProvider, getRedirectResult } from "firebase/auth";
+import { getAuth, signInWithRedirect, GoogleAuthProvider, getRedirectResult, setPersistence, browserSessionPersistence } from "firebase/auth";
 
 
 function component() {
@@ -37,36 +37,48 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 let user;
 const provider = new GoogleAuthProvider();
-getRedirectResult(auth).then(function(result) {
-    console.log(result)
-    if (!result) {
-        // User not logged in, start login.
-        signInWithRedirect(auth, provider)
-            .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                // The signed-in user info.
-                user = result.user;
-                console.log(user)
-                    // ...
-            }).catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-                // ...
-            });
-    } else {
-        // user logged in, go to home page.
+
+document.getElementById("signInButton").addEventListener("click", () => {
+    signInWithRedirect(auth, provider)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            user = result.user;
+            // ...
+        }).catch((error) => {
+            //console.error(error)
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
+
+})
+getRedirectResult(auth)
+    .then((result) => {
+        // This gives you a Google Access Token. You can use it to access Google APIs.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+
+        // The signed-in user info.
+        user = result.user;
         console.log(user.email)
-        document.write("logged in!");
-    }
-}).catch(function(error) {
-    // Handle Errors here.
-    console.log(error)
+            //console.log(user.getPhotoUrl())
+        document.getElementById('userIcon').src = user.photoURL;
+        document.getElementById('userName').innerHTML = user.reloadUserInfo.displayName
+    }).catch((error) => {
+        // Handle Errors here.
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // // The email of the user's account used.
+        // const email = error.customData.email;
+        // // The AuthCredential type that was used.
+        // const credential = GoogleAuthProvider.credentialFromError(error);
         // ...
-});
+    });
