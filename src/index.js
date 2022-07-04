@@ -9,7 +9,6 @@ function component() {
 
     // Lodash, currently included via a script, is required for this line to work
     // Lodash, now imported by this script
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
 
     return element;
 }
@@ -71,14 +70,16 @@ getRedirectResult(auth)
         console.log(user.email)
             //console.log(user.getPhotoUrl())
         document.getElementById('userIcon').src = user.photoURL;
-        document.getElementById('userName').innerHTML = user.reloadUserInfo.displayName
+        document.getElementById('userName').innerHTML = user.reloadUserInfo.displayName;
+        document.getElementById("signInButton").style.right = "-20vw"
     }).catch((error) => {
-        // Handle Errors here.
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // // The email of the user's account used.
-        // const email = error.customData.email;
-        // // The AuthCredential type that was used.
-        // const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
+        console.log(error)
+            // Handle Errors here.
+            // const errorCode = error.code;
+            // const errorMessage = error.message;
+            // // The email of the user's account used.
+            // const email = error.customData.email;
+            // // The AuthCredential type that was used.
+            // const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
     });
