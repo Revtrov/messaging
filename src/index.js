@@ -71,7 +71,7 @@ getRedirectResult(auth)
             //console.log(user.getPhotoUrl())
         document.getElementById('userIcon').src = user.photoURL;
         document.getElementById('userName').innerHTML = user.reloadUserInfo.displayName;
-        document.getElementById("signInButton").style.right = "-20vw"
+        document.getElementById("signInButton").style.right = "-50vw"
     }).catch((error) => {
         console.log(error)
             // Handle Errors here.
